@@ -1,0 +1,65 @@
+<div *ngIf="userProfile" class="container px-4 w-75" id="custom-cards">
+    <div class="row row-cols border-bottom ">
+        <div class="col">
+            <h2 class="pb-2">Profile : {{userProfile.email}}</h2>
+        </div>
+        <div *ngIf="!userProfile.emailVerified" class="col-3 p-2 text-end">
+            <button routerLink="/profile/verify-email" class="btn btn-sm btn-outline-danger ms-3">Verify Email</button>
+        </div>
+        <div *ngIf="userProfile.emailVerified" class="col-3 p-2 text-end">
+            Verifed Email
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 mt-2">
+            <div class="list-group">
+                <a routerLink="/profile/change-email" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                    true}" class="list-group-item list-group-item-action">Change Email</a>
+                <a routerLink="/profile/change-password" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                    true}" class="list-group-item list-group-item-action">Change Password</a>
+                <a routerLink="/profile/change-name" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                    true}" class="list-group-item list-group-item-action">Change Display Name</a>
+                <a routerLink="/profile/change-photo" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                    true}" class="list-group-item list-group-item-action">Change Profile Photo</a>
+                <a routerLink="/profile/link-account" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                        true}" class="list-group-item list-group-item-action">Link Account</a>
+                <a routerLink="/profile/delete-account" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                    true}" class="list-group-item list-group-item-action">Delete Account</a>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="mt-2">
+                <ng-container>
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Display Name: {{userProfile.displayName}}
+                        </div>
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{userProfile.photoURL}}" class="img-fluid"
+                                    alt="{{userProfile.photoURL}}">
+                            </div>
+                            <div class="col-md-8">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"> User ID: {{userProfile.uid}}</li>
+                                    <li class="list-group-item"> Phone Number: {{userProfile.phoneNumber}}</li>
+                                    <li class="list-group-item"> Password Hash: {{userProfile.reloadUserInfo.passwordHash}}</li>
+                                    <li class="list-group-item"> Password Update At: {{userProfile.reloadUserInfo.passwordUpdatedAt| date: "dd/MM/y, HH:mm"}}</li>
+                                    <li class="list-group-item"> Providers: <span class="me-2"
+                                            *ngFor="let provider of userProfile.reloadUserInfo.providerUserInfo">{{provider.providerId|
+                                            titlecase}}</span></li>
+                                    <li class="list-group-item"><small class="text-muted">Last
+                                            login:{{userProfile.reloadUserInfo.lastLoginAt | date: "dd/MM/y, HH:mm"}}</small></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Account Created At:{{userProfile.reloadUserInfo.createdAt | date: "dd/MM/y, HH:mm"}}
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+</div>

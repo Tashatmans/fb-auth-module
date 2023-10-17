@@ -1,0 +1,30 @@
+<div class="container">
+    <div *ngIf="!verify" class="form-capsule w-100 ms-auto">
+        <form #loginForm="ngForm">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <div class="form-floating">
+                <input type="text" required ngModel [(ngModel)]="phoneNumber" name="phoneNumber" class="form-control"
+                    id="phoneInput" placeholder="Password">
+                <label for="phoneInput">Phone Numbers</label>
+            </div>
+
+            <button class="btn btn-primary w-100 py-2" type="button" (click)="getOTP()" [disabled]="loginForm.invalid">Sign in</button>
+            <div id="sign-in-button"></div>
+        </form>
+
+    </div>
+    <div *ngIf="verify"  class="form-capsule w-100 m-auto">
+        <form #loginForm="ngForm">
+            <h1 class="h3 mb-3 fw-normal">Verification</h1>
+            <div class="form-floating">
+                <input type="text" required ngModel [(ngModel)]="otp" name="otp" class="form-control"
+                    id="verifyCode" placeholder="Verify Code">
+                <label for="verifyCode">Verify Code</label>
+            </div>
+
+            <button class="btn btn-primary w-100 py-2" type="button" (click)="handleClick()" [disabled]="loginForm.invalid">Sign in</button>
+            <div id="sign-in-button"></div>
+        </form>
+
+    </div>
+</div>
